@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Quiz Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <h1>Purple Quiz</h1>
+            </div>
+            <div class="score-display" id="headerScore">
+                <span class="score-label">Score:</span>
+                <span class="score-value">0</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Start Screen -->
+            <div class="screen" id="startScreen">
+                <div class="start-card">
+                    <div class="start-icon">🎯</div>
+                    <h2>Welcome to Purple Quiz!</h2>
+                    <p>Test your knowledge with 5 interesting questions.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">✓</span>
+                            <span>Instant Feedback</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Quick Results</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🔄</span>
+                            <span>Try Again</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-large" id="startBtn">
+                        Start Quiz
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Screen -->
+            <div class="screen hidden" id="quizScreen">
+                <div class="quiz-container">
+                    <!-- SVG Definitions -->
+                    <svg width="0" height="0" style="position: absolute;">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#6B21A8;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <!-- Progress Section -->
+                    <div class="progress-section">
+                        <div class="question-counter">
+                            <span id="currentQuestion">1</span>
+                            <span class="separator">/</span>
+                            <span id="totalQuestions">5</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Section -->
+                    <div class="question-section">
+                        <h2 class="question-text" id="questionText">Question goes here?</h2>
+                    </div>
+
+                    <!-- Options Section -->
+                    <div class="options-section" id="optionsContainer">
+                        <button class="option-btn" data-index="0">
+                            <span class="option-letter">A</span>
+                            <span class="option-text">Option 1</span>
+                        </button>
+                        <button class="option-btn" data-index="1">
+                            <span class="option-letter">B</span>
+                            <span class="option-text">Option 2</span>
+                        </button>
+                        <button class="option-btn" data-index="2">
+                            <span class="option-letter">C</span>
+                            <span class="option-text">Option 3</span>
+                        </button>
+                        <button class="option-btn" data-index="3">
+                            <span class="option-letter">D</span>
+                            <span class="option-text">Option 4</span>
+                        </button>
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div class="feedback-section hidden" id="feedbackSection">
+                        <div class="feedback-message" id="feedbackMessage">
+                            <span class="feedback-icon">✓</span>
+                            <span class="feedback-text">Correct!</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="navigation-section">
+                        <button class="btn btn-primary" id="nextBtn" disabled>
+                            Next Question
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="screen hidden" id="resultsScreen">
+                <div class="results-card">
+                    <div class="results-icon" id="resultsIcon">🏆</div>
+                    <h2>Quiz Complete!</h2>
+                    
+                    <div class="score-circle">
+                        <svg class="score-ring" viewBox="0 0 100 100">
+                            <circle class="score-ring-bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="score-ring-progress" cx="50" cy="50" r="45" id="scoreRing"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <span class="final-score" id="finalScore">0</span>
+                            <span class="score-divider">/</span>
+                            <span class="total-score">5</span>
+                        </div>
+                    </div>
+
+                    <div class="score-percentage">
+                        <span id="percentageText">0%</span>
+                    </div>
+
+                    <p class="performance-message" id="performanceMessage">
+                        Great job! Keep learning!
+                    </p>
+
+                    <button class="btn btn-primary btn-large" id="restartBtn">
+                        Try Again
+                        <span class="btn-icon">🔄</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>© 2024 Purple Quiz Application</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
